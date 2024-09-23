@@ -9,12 +9,17 @@
         "php": ">=8.3.11",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "composer": "*",
         "runtime/frankenphp-symfony": "^0.2.0",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.1.*",
         "symfony/runtime": "7.1.*",
+        "symfony/twig-bundle": "7.1.*",
+        "symfony/ux-live-component": "*",
+        "symfony/ux-notify": "^2.19",
+        "symfony/ux-turbo": "^2.19",
         "symfony/yaml": "7.1.*"
     },
     "config": {
