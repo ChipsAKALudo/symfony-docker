@@ -62,7 +62,7 @@ Encore
     // uncomment if you use React
     .enableReactPreset()
 
-  .enableStimulusBridge('./assets/controllers.json')
+    .enableStimulusBridge('./assets/controllers.json')
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
