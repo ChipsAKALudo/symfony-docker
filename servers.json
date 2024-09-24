@@ -1,0 +1,19 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Postgres Database",
+      "Group": "Servers",
+      "Host": "database",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "app",
+      "Password": "!ChangeMe!",
+      "SSLMode": "prefer",
+      "SSLCert": "",
+      "SSLKey": "",
+      "SSLRootCert": "",
+      "SSLCrl": "",
+      "SSLCompression": true
+    }
+  }
+}
