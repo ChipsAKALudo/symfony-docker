@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@hotwired/turbo": "^7.1.1 || ^8.0",
+    "@symfony/stimulus-bridge": "^3.2.0",
+    "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
+    "@symfony/ux-notify": "file:vendor/symfony/ux-notify/assets",
+    "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
+    "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "tailwindcss": "^3.4.13"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.445.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
