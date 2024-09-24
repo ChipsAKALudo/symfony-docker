@@ -9,10 +9,6 @@
       "Username": "app",
       "Password": "!ChangeMe!",
       "SSLMode": "prefer",
-      "SSLCert": "",
-      "SSLKey": "",
-      "SSLRootCert": "",
-      "SSLCrl": "",
       "SSLCompression": true
     }
   }
