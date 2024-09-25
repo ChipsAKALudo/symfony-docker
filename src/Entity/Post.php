@@ -23,7 +23,7 @@ class Post
     private ?User $author = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
@@ -31,7 +31,7 @@ class Post
     /**
      * @var Collection<int, Tag>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts', cascade: ['persist'])]
     private Collection $tags;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
@@ -48,6 +48,7 @@ class Post
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->tags = new ArrayCollection();
         $this->children = new ArrayCollection();
     }

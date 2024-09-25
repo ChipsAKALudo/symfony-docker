@@ -40,4 +40,29 @@ class PostRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findByFilters(int $offset, int $maxResults = 10, ?int $group = null, ?array $tags = null)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->orderBy('p.createdAt', 'DESC')
+            ->setFirstResult($offset)
+        ;
+
+        if ($group) {
+            $qb->andWhere('p.group = :group')
+                ->setParameter('group', $group);
+        }
+
+        if ($tags) {
+            $qb->leftJoin('p.tags', 't')
+                ->andWhere('t.name IN (:tags)')
+                ->setParameter('tags', $tags);
+        }
+
+        return $qb->setMaxResults($maxResults)
+            ->getQuery()
+            ->getResult();
+    }
 }

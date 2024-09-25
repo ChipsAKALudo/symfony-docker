@@ -138,7 +138,7 @@
         ]
     },
     "symfony/stimulus-bundle": {
-        "version": "2.19",
+        "version": "2.20",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -165,7 +165,7 @@
         ]
     },
     "symfony/ux-live-component": {
-        "version": "2.19",
+        "version": "2.20",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -177,10 +177,10 @@
         ]
     },
     "symfony/ux-notify": {
-        "version": "v2.19.3"
+        "version": "v2.20.0"
     },
     "symfony/ux-react": {
-        "version": "2.19",
+        "version": "2.20",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -192,10 +192,10 @@
         ]
     },
     "symfony/ux-turbo": {
-        "version": "v2.19.3"
+        "version": "v2.20.0"
     },
     "symfony/ux-twig-component": {
-        "version": "2.19",
+        "version": "2.20",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -204,6 +204,18 @@
         },
         "files": [
             "config/packages/twig_component.yaml"
+        ]
+    },
+    "symfony/validator": {
+        "version": "7.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.0",
+            "ref": "8c1c4e28d26a124b0bb273f537ca8ce443472bfd"
+        },
+        "files": [
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/webpack-encore-bundle": {
