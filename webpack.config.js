@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -71,6 +72,21 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+
+  .enablePostCssLoader((options) => {
+    options.postcssOptions = {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    };
+  })
+
+  .addAliases({
+    '@': path.resolve(__dirname, './'), // Maps "@" to the project root
+    '@components': path.resolve(__dirname, './components'), // Resolves "@/components" to the "components" folder
+    '@ui': path.resolve(__dirname, './components/ui'), // Resolves "@/components/ui" to "components/ui"
+  });
+
 
 module.exports = Encore.getWebpackConfig();
