@@ -25,7 +25,7 @@ class Tag
     private Collection $posts;
 
     #[ORM\Column]
-    private ?bool $public = null;
+    private ?bool $public = true;
 
     /**
      * @var Collection<int, User>
