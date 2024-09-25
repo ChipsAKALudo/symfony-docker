@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Group;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
@@ -24,10 +25,19 @@ final class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setAuthor($this->getUser());
+
+            if($group = $request->query->getInt('group')) {
+                $group = $entityManager->getRepository(Group::class)->find($group) ?? null;
+                if($group instanceof Group) {
+                    $group->addPost($post);
+                }
+            }
+
             $entityManager->persist($post);
             $entityManager->flush();
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_CREATED);
+
+            $response = (new Response())->setStatusCode(Response::HTTP_CREATED);
+            $response->headers->set('Post-Id', $post->getId());
         }
 
         return $this->render('post/new.html.twig', [
