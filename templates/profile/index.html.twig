@@ -50,7 +50,9 @@
                 {% if user.posts|length > 0 %}
                     {% for post in user.posts %}
                         <div class="bg-white shadow-md rounded-md p-4 mb-4">
+                        <a href="{{ path('app_post_show', {'id': post.id}) }}">
                             <p>{{ post.content }}</p>
+                        </a>
                         </div>
                     {% endfor %}
                 {% else %}

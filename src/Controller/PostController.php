@@ -80,6 +80,8 @@ final class PostController extends AbstractController
             $entityManager->flush();
             $response = new Response();
             $response->setStatusCode(Response::HTTP_CREATED);
+            $this->addFlash('success', 'Votre réponse a été envoyée avec succès.');
+            return $this->redirectToRoute('app_post_show', ['id' => $post->getId()]);
         }
 
         return $this->render('post/reply.html.twig', [
@@ -87,12 +89,15 @@ final class PostController extends AbstractController
             'reply' => $reply,
             'form' => $form,
         ], $response);
-}
+    }
 
     #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
-        return $this->json($post, context: [AbstractNormalizer::GROUPS => ['app:post:read']]);
+        // return $this->json($post, context: [AbstractNormalizer::GROUPS => ['app:post:read']]);
+        return $this->render('post/show.html.twig', [
+            'post' => $post,
+        ]);
     }
 
     //todo: make a voter for this
