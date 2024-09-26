@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Group;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 #[Route('/post')]
 final class PostController extends AbstractController
@@ -24,11 +26,19 @@ final class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setAuthor($this->getUser());
+
+            if($group = $request->query->getInt('group')) {
+                $group = $entityManager->getRepository(Group::class)->find($group) ?? null;
+                if($group instanceof Group) {
+                    $group->addPost($post);
+                }
+            }
+
             $entityManager->persist($post);
             $entityManager->flush();
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_CREATED);
 
+            $response = (new Response())->setStatusCode(Response::HTTP_CREATED);
+            $response->headers->set('Post-Id', $post->getId());
             return $this->redirectToRoute('app_home');
         }
 
@@ -82,7 +92,7 @@ final class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
-        return $this->json($post);
+        return $this->json($post, context: [AbstractNormalizer::GROUPS => ['app:post:read']]);
     }
 
     //todo: make a voter for this
