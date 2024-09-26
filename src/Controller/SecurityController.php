@@ -54,10 +54,8 @@ class SecurityController extends AbstractController
 
             //todo: set default tags
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
         }
-
-        dump($form->getErrors(true, false));
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,

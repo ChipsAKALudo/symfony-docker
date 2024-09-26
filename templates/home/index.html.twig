@@ -1,14 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}DigitalCampus{% endblock %}
 
 {% block body %}
+    <div class="container mx-auto px-4 py-8 flex">
+        {# Main content #}
+        <main class="flex-1">
+            <h1 class="text-xl font-bold text-center">Fil d'actualité</h1>
+            {# Search bar #}
+                <div class="mb-6 flex items-center">
+                    <div class="relative flex-1">
+                        <input type="search" placeholder="Rechercher un tag..." class="pl-8 pr-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <svg class="absolute left-2 top-2.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            {# Search icon SVG path #}
+                        </svg>
+                    </div>
+                    <a href="{{ path('app_post_new') }}" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Créer un post
+                    </a>
+                </div>
 
-help pliz
 
-{# <img src="https://cdn.prod.website-files.com/5f9348b443200f462d975d45/5f95a73862f66d62b7240578_Whaller-interface.jpeg" width="100%"></img> #}
+            {# Posts #}
+            <div class="space-y-6">
+                {% for post in posts %}
+                    <div class="bg-white shadow-md rounded-md p-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                <div class="flex h-full w-full items-center justify-center rounded-full text-white" style="background-color: hsl({{ (post.author.name|length + post.author.surname|length)*7 % 360 }}, 50%, 50%)">
+                                {{ post.author.name|slice(0, 1) }}{{ post.author.surname|slice(0, 1) }}
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-semibold">{{ post.author.name }} {{ post.author.surname }}</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p>{{ post.content }}</p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            {% for tag in post.tags %}
+                                <span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                                    #{{ tag.name }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
 
-<div {{ react_component('SocialNetwork', { fullName: 'Fabien' }) }}>
-</div>
-
+        {# Groups #}
+        <aside class="w-64 ml-8">
+            <div class="bg-white shadow-md rounded-md p-4">
+                <h2 class="text-xl font-semibold text-center">Groupes</h2>
+                <form class="space-y-4 mt-4">
+                    {% for group in groups %}
+                        <div class="flex items-center space-x-2">
+                            <input type="radio" name="group" id="group_{{ loop.index }}" class="form-radio text-blue-500" value="{{ group.name }}">
+                            <label for="group_{{ loop.index }}" class="text-sm text-gray-700">{{ group.name }}</label>
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </aside>
+    </div>
 {% endblock %}

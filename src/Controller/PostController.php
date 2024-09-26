@@ -28,6 +28,8 @@ final class PostController extends AbstractController
             $entityManager->flush();
             $response = new Response();
             $response->setStatusCode(Response::HTTP_CREATED);
+
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('post/new.html.twig', [
