@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 #[Route('/post')]
 final class PostController extends AbstractController
@@ -91,7 +92,7 @@ final class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
-        return $this->json($post);
+        return $this->json($post, context: [AbstractNormalizer::GROUPS => ['app:post:read']]);
     }
 
     //todo: make a voter for this
