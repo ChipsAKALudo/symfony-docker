@@ -58,6 +58,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'users', cascade: ['persist'])]
     private Collection $tags;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $surname = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -229,6 +235,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeTag(Tag $tag): static
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): static
+    {
+        $this->surname = $surname;
 
         return $this;
     }

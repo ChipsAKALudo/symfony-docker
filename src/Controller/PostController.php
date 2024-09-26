@@ -38,6 +38,7 @@ final class PostController extends AbstractController
 
             $response = (new Response())->setStatusCode(Response::HTTP_CREATED);
             $response->headers->set('Post-Id', $post->getId());
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('post/new.html.twig', [
