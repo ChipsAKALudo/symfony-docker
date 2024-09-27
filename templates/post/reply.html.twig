@@ -30,21 +30,17 @@
     <div>
         <div class="bg-gray-200 shadow-md rounded-md p-4 mt-4">
             <h2 class="font-semibold text-lg mb-4">Votre réponse</h2>
-            {% if app.request.method == 'POST' and app.flashes('success') %}
-                <p>Votre réponse a été envoyée avec succès.</p>
-            {% else %}
-                {{ form_start(form) }}
-                    <div class="mb-4 p-2">
-                        {{ form_widget(form.content, {'attr': {'class': 'p-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md', 'placeholder': 'Écrivez votre réponse ici...'}}) }}
-                    </div>
-                    <div class="mb-4 p-2">
-                        {{ form_widget(form.tags, {'attr': {'class': 'p-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md', 'placeholder': 'Tags (séparés par des virgules)...'}}) }}
-                    </div>
-                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Répondre
-                    </button>
-                {{ form_end(form) }}
-            {% endif %}
+            {{ form_start(form) }}
+                <div class="mb-4 p-2">
+                    {{ form_widget(form.content, {'attr': {'class': 'p-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md', 'placeholder': 'Écrivez votre réponse ici...'}}) }}
+                </div>
+                <div class="mb-4 p-2">
+                    {{ form_widget(form.tags, {'attr': {'class': 'p-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md', 'placeholder': 'Tags (séparés par des virgules)...'}}) }}
+                </div>
+                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Répondre
+                </button>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

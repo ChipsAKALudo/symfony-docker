@@ -75,12 +75,11 @@ final class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $reply);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $entityManager->persist($reply);
             $entityManager->flush();
             $response = new Response();
             $response->setStatusCode(Response::HTTP_CREATED);
-            $this->addFlash('success', 'Votre réponse a été envoyée avec succès.');
             return $this->redirectToRoute('app_post_show', ['id' => $post->getId()]);
         }
 
