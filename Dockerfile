@@ -94,11 +94,12 @@ RUN set -eux; \
 COPY --link . ./
 RUN rm -Rf frankenphp/
 
+# ajout installation des modules node et build
 RUN set -eux; \
     mkdir -p var/cache var/log; \
     composer dump-autoload --classmap-authoritative --no-dev; \
     composer dump-env prod; \
     composer run-script --no-dev post-install-cmd; \
     npm install; \
-    npm run watch; \
+    npm run build; \
     chmod +x bin/console; sync;
